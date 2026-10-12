@@ -475,14 +475,14 @@ function vDash(){const L=tgbtList();const c=counts(L);const B=budget();const use
   <div class="actions"><button class="btn primary" data-act="report">Point d'avancement</button><button class="btn" data-act="csv">Exporter en CSV</button></div></div>
   <section class="tiles">
     <div class="tile"><span class="k">Folios validés</span><span class="v num">${c.valide}<small> / ${c.total}</small></span><div class="tbar"><i style="width:${c.total?(c.valide/c.total*100).toFixed(1):0}%"></i></div><span class="s num">${c.reprise} à reprendre · ${c.cq} en C/Q</span></div>
-    <div class="tile"><span class="k">Avancement pondéré</span><span class="v num">${fmt(c.pct,0)}<small> %</small></span><div class="tbar"><i style="width:${c.pct.toFixed(1)}%"></i></div><span class="s">Échelle 0 · 25 · 50 · 80 · 100 %</span></div>
+    <div class="tile"><span class="k">Avancement pondéré</span><span class="v num">${fmt(c.pct,0)}<small> %</small></span><div class="tbar"><i style="width:${c.pct.toFixed(1)}%"></i></div><span class="s">Échelle 0 · 50 · 70 · 80 · 90 · 100 %</span></div>
     <div class="tile"><span class="k">Heures passées</span><span class="v num">${fmt(used,1)}<small> / ${fmt(B.tot,0)} h</small></span><div class="tbar"><i style="width:${Math.min(100,B.tot?used/B.tot*100:0).toFixed(1)}%"></i></div><span class="s num">Budget ${fmt(B.jh,1)} j.h à ${fmt(num(C.hJour,8),0)} h/j</span></div>
     <div class="tile"><span class="k">Montant livré</span><span class="v num">${fmt(liv,0)}<small> / ${fmt(tot,0)} €</small></span><div class="tbar"><i style="width:${tot?(liv/tot*100).toFixed(1):0}%"></i></div><span class="s">${esc(C.devise||"€ HT")} · ${fmt(prix(),2)} € par folio</span></div>
   </section>
   <section class="card"><h3>Lots de livraison <small>du pilote à la réception</small></h3><div class="lots">${lotCards}${fin}</div></section>
   <div class="grid2">
-    <section class="card"><h3>Planche des folios <small>cliquez sur un TGBT pour le mettre à jour</small></h3>${legend()}<div class="planche">${pl}</div></section>
-    <section class="card"><h3>Points d'attention <small>${A.length}</small></h3>${A.length?`<ul class="alerts">${A.map(a=>`<li><i class="dot" style="background:${col[a[0]]}"></i><span>${esc(a[1])}</span></li>`).join("")}</ul>`:`<p class="empty-note">Aucun point d'attention.</p>`}</section>
+    <section class="card" style="grid-column:1/-1"><h3>Planche des folios <small>cliquez sur un TGBT pour le mettre à jour</small></h3>${legend()}<div class="planche">${pl}</div></section>
+
   </div>`}
 
 function optList(arr,val,empty){return (empty?`<option value="">${esc(empty)}</option>`:"")+arr.map(o=>`<option value="${esc(o.v)}"${o.v===val?" selected":""}>${esc(o.l)}</option>`).join("")}
